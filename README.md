@@ -1,2 +1,2 @@
 # py-enigma
-A python implementation of the German Enigma machines used in WWII
+A python simulation of German Enigma machines used in WWII
