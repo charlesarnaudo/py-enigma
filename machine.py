@@ -8,11 +8,11 @@ class EnigmaMachine:
     """
     def __init__(self):
         # Create three rotors
-        self.rotor0 = 'FABECD'
+        self.rotor0 = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
         self.rotor0 = list(self.rotor0)
-        self.rotor1 = 'CEFABD'
+        self.rotor1 = 'AJDKSIRUXBLHWTMCQGZNPYFVOE'
         self.rotor1 = list(self.rotor1)
-        self.rotor2 = 'CEAFDB'
+        self.rotor2 = 'BDFHJLCPRTXVZNYEIWGAKMUSQO'
         self.rotor2 = list(self.rotor2)
         # Group rotors together
         self.rotors = []
@@ -22,7 +22,7 @@ class EnigmaMachine:
         self.rotors_copy += self.rotor0, self.rotor1, self.rotor2
 
         # Create alphabet array, for index
-        self.alphabet = ["A", "B", "C", "D", "E", "F"]
+        self.alphabet = list(string.ascii_uppercase)
     
     def rotate(self):
         """Rotate rotor right by one"""
