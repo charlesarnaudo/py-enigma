@@ -8,11 +8,11 @@ class EnigmaMachine:
     """
     def __init__(self):
         # Create three rotors
-        self.rotor0 = 'EKMFLGDQVZNTOWYHXUSPAIBRCJ'
+        self.rotor0 = 'FABECD'
         self.rotor0 = list(self.rotor0)
-        self.rotor1 = 'AJDKSIRUXBLHWTMCQGZNPYFVOE'
+        self.rotor1 = 'CEFABD'
         self.rotor1 = list(self.rotor1)
-        self.rotor2 = 'BDFHJLCPRTXVZNYEIWGAKMUSQO'
+        self.rotor2 = 'CEAFDB'
         self.rotor2 = list(self.rotor2)
         # Group rotors together
         self.rotors = []
@@ -22,7 +22,7 @@ class EnigmaMachine:
         self.rotors_copy += self.rotor0, self.rotor1, self.rotor2
 
         # Create alphabet array, for index
-        self.alphabet = list(string.ascii_uppercase)
+        self.alphabet = ["A", "B", "C", "D", "E", "F"]
     
     def rotate(self):
         """Rotate rotor right by one"""
@@ -31,11 +31,9 @@ class EnigmaMachine:
     def reset(self):
         """Reset machine to inital config"""
         self.rotors = self.rotors_copy
-        print("Reset")
-        print(self.rotors)
-        print("\n")
     
     def encrypt(self, plaintext):
+        """Encrypt text"""
         plaintext = plaintext.upper()
         ciphertext = ""
         tempcipher = ""
@@ -47,6 +45,23 @@ class EnigmaMachine:
             ciphertext += tempcipher
             self.rotate()
         return(ciphertext)
+
+    def decrypt(self, ciphertext):
+        """Decrypt text"""
+        self.reset()
+        plaintext = ""
+        temptext = ""
+        for char in ciphertext:
+            for rotor in reversed(self.rotors):
+                index = rotor.index(char)
+                temptext = self.alphabet[index]
+                # print(temptext)
+                # print(rotor)
+                # print("\n")
+                char = temptext
+            plaintext += temptext
+            self.rotate()
+        return(plaintext)
 
     def print_current_state(self):
         """Print current configuration of machine"""
