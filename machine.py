@@ -3,7 +3,6 @@ import math
 import string
 import pprint
 
-
 class EnigmaMachine:
     """
     """
@@ -25,30 +24,44 @@ class EnigmaMachine:
         # Create alphabet array, for index
         self.alphabet = list(string.ascii_uppercase)
     
-    def rotate(self, l):
+    def rotate(self):
         """Rotate rotor right by one"""
-        return l[-1:] + l[:-1]
+        self.rotors[0] = self.rotors[0][-1:] + self.rotors[0][:-1]
 
     def reset(self):
         """Reset machine to inital config"""
         self.rotors = self.rotors_copy
-        print("Reset")
-        print(self.rotors)
-        print("\n")
     
     def encrypt(self, plaintext):
-        """Run input through rotors, and encode"""
+        """Encrypt text"""
         plaintext = plaintext.upper()
         ciphertext = ""
         tempcipher = ""
         for char in plaintext:
-            index = self.alphabet.index(char)
-            self.rotate(self.rotors[0])
             for rotor in self.rotors:
+                index = self.alphabet.index(char)
                 tempcipher = rotor[index]
-                index = self.alphabet.index(tempcipher)
+                char = tempcipher
             ciphertext += tempcipher
+            self.rotate()
         return(ciphertext)
+
+    def decrypt(self, ciphertext):
+        """Decrypt text"""
+        self.reset()
+        plaintext = ""
+        temptext = ""
+        for char in ciphertext:
+            for rotor in reversed(self.rotors):
+                index = rotor.index(char)
+                temptext = self.alphabet[index]
+                # print(temptext)
+                # print(rotor)
+                # print("\n")
+                char = temptext
+            plaintext += temptext
+            self.rotate()
+        return(plaintext)
 
     def print_current_state(self):
         """Print current configuration of machine"""
