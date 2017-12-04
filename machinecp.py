@@ -1,10 +1,9 @@
-import sys
-import math
 import string
-import pprint
 
 class EnigmaMachine:
     """
+    Enigma machine with standard functions
+    Plugboard not implemented
     """
     def __init__(self):
         # Create three rotors
@@ -23,7 +22,7 @@ class EnigmaMachine:
 
         # Create alphabet array, for index
         self.alphabet = list(string.ascii_uppercase)
-    
+        
     def rotate(self):
         """Rotate rotor right by one"""
         self.rotors[0] = self.rotors[0][-1:] + self.rotors[0][:-1]
@@ -31,9 +30,10 @@ class EnigmaMachine:
     def reset(self):
         """Reset machine to inital config"""
         self.rotors = self.rotors_copy
-    
+
     def encrypt(self, plaintext):
         """Encrypt text"""
+        plaintext = plaintext.replace(" ", "x")
         plaintext = plaintext.upper()
         ciphertext = ""
         tempcipher = ""
