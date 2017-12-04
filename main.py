@@ -2,9 +2,9 @@ import enigma_machine
 
 if __name__ == '__main__':
     # Make Rotors
-    rot0 = enigma_machine.Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'W')
-    rot1 = enigma_machine.Rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'X')
-    rot2 = enigma_machine.Rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'X')
+    rot0 = enigma_machine.Rotor('CABD', 'W')
+    rot1 = enigma_machine.Rotor('BACD', 'X')
+    rot2 = enigma_machine.Rotor('DBAC', 'X')
 
     # Make scrambler
     scrambler = enigma_machine.Scrambler()
@@ -17,4 +17,6 @@ if __name__ == '__main__':
 
     plaintext = input("Text to encrypt\n")
     cipher = machine.encrypt(plaintext)
-    print(cipher)
+    print(cipher + "\n")
+    uncipher = machine.decrypt(cipher)
+    print(uncipher)

@@ -35,6 +35,23 @@ class Scrambler:
                 char = tempcipher
             ciphertext += tempcipher
         return(ciphertext)
+    
+    def reset(self):
+        self.rotors = self.rotorscp
+
+    def decrypt(self, ciphertext):
+        plaintext = ""
+        for char in ciphertext:
+            for rotor in self.rotors:
+                if char == rotor.tNotch:
+                    rotor.rotate()
+                if rotor.pos == 0:
+                    rotor.rotate()
+                index = rotor.tyre.index(char)
+                temptext = self.alphabet[index]
+                char = temptext
+            plaintext += temptext
+        return(plaintext)
 
 class EnigmaMachine:
     def __init__(self, scrambler):
@@ -45,3 +62,6 @@ class EnigmaMachine:
 
     def encrypt(self, plaintext):
         return(self.scrambler.encrypt(plaintext))
+    
+    def decrypt(self, ciphertext):
+        return(self.scrambler.decrypt(ciphertext))
