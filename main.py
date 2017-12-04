@@ -2,13 +2,13 @@ import enigma_machine
 
 if __name__ == '__main__':
     # Make Rotors
-    # rot0 = enigma_machine.Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'W')
-    # rot1 = enigma_machine.Rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'X')
-    # rot2 = enigma_machine.Rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'X')
+    rot0 = enigma_machine.Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'W')
+    rot1 = enigma_machine.Rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'X')
+    rot2 = enigma_machine.Rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'X')
 
-    rot0 = enigma_machine.Rotor('CABD', 'X')
-    rot1 = enigma_machine.Rotor('BACD', 'X')
-    rot2 = enigma_machine.Rotor('DBAC', 'X')
+    # rot0 = enigma_machine.Rotor('CABD', 'X')
+    # rot1 = enigma_machine.Rotor('BACD', 'X')
+    # rot2 = enigma_machine.Rotor('DBAC', 'X')
 
     # Make scrambler
     scrambler = enigma_machine.Scrambler()
